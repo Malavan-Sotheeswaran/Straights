@@ -34,13 +34,13 @@ int main(int argc, char **argv){
 	if (argc == 2) seed = strtol(argv[1],nullptr,10);
 	Player players[PLAYER_COUNT];
 	int scores[PLAYER_COUNT];
-	std::vector<Card> discards[4];
+	std::vector<Card> discards[PLAYER_COUNT];
 	for(int i = 0; i < PLAYER_COUNT; i++){
 		scores[i] = 0;
 	}
 	char isHuman;
 
-	for(int i = 0; i < 4; i++){
+	for(int i = 0; i < PLAYER_COUNT; i++){
 		std::cout << "Is player " << (i+1) << " a human(h) or a computer(c)?" << "\n>";
 		std::cin >> isHuman;
 		if(isHuman == 'h') players[i].swapControl();
@@ -56,7 +56,7 @@ int main(int argc, char **argv){
 		int numFinished = 0;
 		Table table;
 		bool gameDone = false;
-		for(int i = 0; i < sizeof(players)/sizeof(*players); i++)
+		for(int i = 0; i < PLAYER_COUNT; i++)
 			if(players[i].hasCard(Card(SPADE,SEVEN))) curPlayer = i;
 		std::cout << "A new round begins. It's player " << (curPlayer+1) << "'s turn to play.\n";
 		while(true){
